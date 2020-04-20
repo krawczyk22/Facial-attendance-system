@@ -1,7 +1,10 @@
+# the file has been developed basing on the work of Tanay Choudhary which can be found here: https://github.com/tanay-bits/cvlib/tree/master/Face%20Recognition
+# importing necessary libraries
 import numpy as np
 import cv2
 import sys
 import os
+import mysql.connector
 
 RESIZE_FACTOR = 4
 
@@ -15,6 +18,7 @@ class RecogPCAandLDA:
         self.modelPCA = cv2.face.EigenFaceRecognizer_create()
         self.face_names = []
 
+    # loading the trained algorithms
     def load_trained_PCA_LDA(self):
         names = {}
         key = 0
@@ -28,6 +32,7 @@ class RecogPCAandLDA:
         self.modelLDA.read('LDA_data.xml')
         self.modelPCA.read('PCA_data.xml')
 
+    # initialising the camera
     def show_video(self):
         video_capture = cv2.VideoCapture(0)
         while True:
@@ -42,9 +47,27 @@ class RecogPCAandLDA:
                 cv2.destroyAllWindows()
                 return
 
+    # function updating the database
+    def update_database(self, person):
+        # defining the database connection
+        mydb = mysql.connector.connect(
+        host="localhost",
+        user="root",
+        passwd="password",
+        database="project",
+        auth_plugin="mysql_native_password"
+        )
+
+        mycursor = mydb.cursor()
+        sql = "INSERT INTO attendance (studentID, classroom, date_time) VALUES (%s, %s, NOW());"
+        val = (person, self.classroom_code)
+        mycursor.execute(sql, val)
+        mydb.commit()
+
+    # function extracing the facial features and resizing the derived image
     def process_images(self, inImg):
         frame = cv2.flip(inImg,1)
-        resized_width, resized_height = (112, 92) # Fixing the resolution of the face images
+        resized_width, resized_height = (92, 112) # Fixing the resolution of the face images
         gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY) # Changing the colours of the images into the grey scale       
         gray_resized = cv2.resize(gray, (int(round(gray.shape[1]/RESIZE_FACTOR)), int(round(gray.shape[0]/RESIZE_FACTOR))))        
         faces = self.haarcascade.detectMultiScale(
@@ -95,6 +118,12 @@ class RecogPCAandLDA:
                 cv2.putText(frame, 'PCA: ' + personPCA, (x-10, y-10), cv2.FONT_HERSHEY_PLAIN,1,(0, 0, 255))
             people.append(personLDA)
             people.append(personPCA)
+
+            # if a person is recognised, update the database
+            if str(personLDA) != 'Unknown':
+                self.update_database(personLDA)
+            elif str(personPCA) != 'Unknown':
+                self.update_database(personPCA)
         return (frame, people)
 
 # callig the main function
@@ -103,4 +132,3 @@ if __name__ == '__main__':
     recogniserImage.load_trained_PCA_LDA()
     print("Press 'q' to quit")
     recogniserImage.show_video()
-
