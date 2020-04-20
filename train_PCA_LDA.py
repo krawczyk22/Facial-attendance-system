@@ -1,4 +1,3 @@
-# the file has been developed basing on the work of Tanay Choudhary which can be found here: https://github.com/tanay-bits/cvlib/tree/master/Face%20Recognition
 # importing necessary libraries
 import numpy as np
 import cv2
