@@ -140,4 +140,3 @@ if __name__ == '__main__':
     recogniserImage = RecogPCAandLDA()
     recogniserImage.load_trained_PCA_LDA()
     recogniserImage.show_video()
-

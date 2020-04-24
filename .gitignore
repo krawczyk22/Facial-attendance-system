@@ -1,3 +1,5 @@
 .DS_Store
+LDA_data.xml
+PCA_data.xml
 face_data/
 face_test/
