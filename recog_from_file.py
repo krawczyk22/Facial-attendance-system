@@ -1,3 +1,7 @@
+# THIS FILE IS USED SOLELY FOR THE PURPOSE OF RECOGNISING IMAGES FROM THE /face_test DIRECTORY
+# TO MEASURE THE SUCCESS RATE OF THE COMBINED ALGORITHMS AND 
+# IT IS NOT PART OF THE FACIAL ATTENDANCE SYSTEM
+
 # used in recognising pictures from the file rather than a live stream
 # importing necessary libraries
 import numpy as np
