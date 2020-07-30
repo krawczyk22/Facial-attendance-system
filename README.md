@@ -4,19 +4,19 @@ The purpose of the facial recognition system is to improve the speed of the atte
 
 The system is trained using the PCA and LDA algorithms. It captures a set of pictures of an individual in front of the camera (if more faces are detected, the closest one is used for training). The number of pictures can be changed in recog_PCA_LDA.py by altering the NUM_TRAINING variable. Once a face is detected, it will be surrounded with a blue frame with the number of pictures taken and the number of pictures that needs to be taken displayed above the frame.
 
-<img src="Images/addStudent.png" align="middle" width="400">
+<img src="Images/addStudent.png" align="middle" width="600">
 
 The trained images will be saved in the folder with the ID of the individual provided by the user and the database updated with the individual's ID No. Subsequently, the pictures are used for training the PCA and LDA algorithms. Faces recognised by the program are surrounded with a green frame whilst detected but not recognised faces are surrounded with a red frame. The confidence level of each of the algorithms are displayed above the frame along with the ID No. of the recognised individuals. If a face is detected but not recognised, the individual will be recognised as "Unknown". 
 
-<img src="Images/verifyAttendance.png" align="middle" width="400">
+<img src="Images/verifyAttendance.png" align="middle" width="600">
 
 The recognised individuals will have their attendance records automatically updated by the system. The database for this project consists of 2 tables used for recording the students' attendance as well as the student details. Both tables can be easily modified to store more details about the entities.
 
-<img src="Images/databaseDesign.png" align="middle" width="400">
+<img src="Images/databaseDesign.png" align="middle" width="600">
 
 The main GUI consists of 2 buttons used for adding individuals to the database and verifying the attendance in real-time.
 
-<img src="Images/gui.png" align="middle" width="200">
+<img src="Images/gui.png" align="middle" width="150">
 
 ##################################################################################
 
