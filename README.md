@@ -26,7 +26,7 @@ The main GUI consists of 2 buttons used for adding individuals to the database a
   <img src="Images/gui.png" align="center" width="200">
 </p>
 
-## INSTRUCTION OF USE
+## Instruction of use
 
 Before using the system, please create "face_data" folder in the main directory of the system. This folder is used to store individuals' faces captured during the training process.
 
