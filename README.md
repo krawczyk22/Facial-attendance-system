@@ -1,4 +1,4 @@
-# Facial-attendance-system
+# Facial attendance system
 
 The purpose of the facial recognition system is to improve the speed of the attendance registry by automatically recognising students' faces as they enter the classroom. 
 
